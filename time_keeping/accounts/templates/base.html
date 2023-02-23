@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            {% load static %}
+        <title>Time Keeping</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'  %}">
+        <script src="{% static 'js/time.js' %}"></script>
+        
+    </head>
+    <body>
+        <div class="float-container">
+            <div class="h1">
+                <h1>GoCloud</h1>
+                
+            </div>
+            <div>
+                <p id="demo" class="js">
+
+                </p>
+            </div>
+            {% block content %}
+            
+            {%endblock content%}
+        
+        
+    </body>
+</html>
+
+
+
+
+
