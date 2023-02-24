@@ -18,12 +18,16 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+from .views import check_in,check_out,home_view,success
 
 
 app_name='accounts'
 
 urlpatterns = [
+    path('home/', home_view, name='home'),
+    path('check_in/', check_in, name='check_in'),
+    path('success/', success, name='success'),
+    path('check_out/', check_out, name='check_out'),
     
 ]
 

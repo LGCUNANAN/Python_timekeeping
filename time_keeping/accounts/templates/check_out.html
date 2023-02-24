@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="login">
-    <form action="{ url 'accounts:login'}" method="post">
+    <form action="{% url 'accounts:check_in'%}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table align="center">
             <tr>
@@ -9,7 +9,7 @@
             </tr>
                 <tr>
                     <td colspan="2"> <label> Name:</label><br>
-                        <select  name="employee">
+                        <select  name="username">
                             <option value="" class="disabled" disabled selected>--Select--</option>
                             {% for employee in employees%}
                             <option value="{{ employee.id }}">{{ employee.position}}_{{employee.firstname}}</option>
@@ -25,10 +25,10 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <button class="timeout">Time Out
+                    <button class="timeout">Time 
                     </button></td>
                 </tr>
         </table>
     </form> 
 </div>
-{%endblock%}
+{% endblock content %}

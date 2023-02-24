@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
             {% load static %}
-        <title>Time Keeping</title>
+            <title>{% block title %}Time Keeping{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
@@ -21,15 +21,13 @@
 
                 </p>
             </div>
-            {% block content %}
+
+            <main>
+                {% block content %}
             
-            {%endblock content%}
-        
+                {%endblock content%}
+            </main>
+
         
     </body>
 </html>
-
-
-
-
-
