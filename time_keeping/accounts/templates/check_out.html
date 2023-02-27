@@ -7,14 +7,18 @@
             <tr>
                 <th colspan="2"><h2>Time Keeping</h2></th>
             </tr>
-                <tr>
-                    <td colspan="2"> <label> Name:</label><br>
-                        <select  name="username">
-                            <option value="" class="disabled" disabled selected>--Select--</option>
-                            {% for employee in employees%}
-                            <option value="{{ employee.id }}">{{ employee.position}}_{{employee.firstname}}</option>
-                            {% endfor %}
-                </tr>
+            <tr>{% if success_message %}
+                
+            
+                <td colspan="2"> <h3>{{ success_message }}</h3><br>
+                    {% endif %}
+                </td>
+            </tr>
+                    <tr>
+                        <td colspan="2"> 
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required><br>
+                    </tr>
                 <tr>
                     <td colspan="2">
                         <label> Password:</label> <input type="text" name="password"><br></td>
@@ -25,7 +29,8 @@
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <button class="timeout">Time 
+                        <button class="timeout"type="submit" value="time_out">
+                            Time Out
                     </button></td>
                 </tr>
         </table>

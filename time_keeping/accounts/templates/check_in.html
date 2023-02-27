@@ -1,28 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="login">
-    <form action="{% url 'accounts:success'%}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'accounts:check_in'%}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table align="center">
             <tr>
                 <th colspan="2"><h2>Time Keeping</h2></th>
             </tr>
+            <tr>{% if error_message %}
+                <td colspan="2"> <h3>{{ error_message }}</h3><br>
+                    {% endif %}
+            </tr>
                 <tr>
-                    <td colspan="2"> <label> Name:</label><br>
-                        <input type="text" name="username">
+                    <td colspan="2"> 
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required><br>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <label> Password:</label> <input type="text" name="password"><br></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        </td>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required><br>
+                    </td>
                 </tr>
                 <tr>
                 <td colspan="2">
-                    <button class="timein">Time In
-                    </button></td>
+                    <a href="{%url 'accounts:check_in'%}"><button class="timein"type="submit" value="time_in">Time In
+                    </button></td></a>
                 </tr>
         </table>
     </form> 

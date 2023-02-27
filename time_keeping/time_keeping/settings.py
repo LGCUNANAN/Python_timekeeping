@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
     'accounts'
     
 ]
+LOGIN_URL = 'accounts:check_in'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,12 +84,16 @@ WSGI_APPLICATION = 'time_keeping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+        },
         'NAME': 'time_keeping_db',
         'USER': 'root',
         'PASSWORD': '@Password2023',
         'HOST': 'localhost',
     }
 }
+
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -114,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-#AUTH_USER_MODEL= 'accounts.User'
+AUTH_USER_MODEL= 'accounts.User'
 
 
 # Internationalization
@@ -127,6 +135,8 @@ TIME_ZONE = 'Europe/London'
 USE_I18N = True
 
 USE_TZ = True
+
+
 
 
 # Static files (CSS, JavaScript, Images)
