@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 ]
 LOGIN_URL = 'accounts:check_in'
 
+LOGIN_REDIRECT_URL = '/accounts/check_in_confirm/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,7 +89,7 @@ DATABASES = {
         'OPTIONS': {
             'sql_mode': 'STRICT_ALL_TABLES',
         },
-        'NAME': 'time_keeping_db',
+        'NAME': 'time_keeping',
         'USER': 'root',
         'PASSWORD': '@Password2023',
         'HOST': 'localhost',

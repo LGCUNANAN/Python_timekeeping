@@ -41,11 +41,11 @@ h2
     width: 30%;
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding: 10px 0;
     
 }  
 .js{
-    font-size: 60px;
+    font-size: 50px;
     color: antiquewhite;
 }
 .blue{
@@ -65,7 +65,8 @@ table
 }
 td{
     font-size: 26px;
-    padding: 10px;
+    border: 1px solid black;
+    padding: 5px;
     
 }
 select{

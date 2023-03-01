@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="login"><h2>Check In Confirmed</h2>
-<p>Thank you for checking in at {{ check_in_time }}.</p>
-<p>You are now logged in as {{ user.firstname }}.</p>
+<div class="login"><h2>{{ success_message }}</h2>
+<p>You are now logged in as {{ user.email }}.</p>
 <p><a href="{% url 'accounts:check_out' %}">Click here to check out.</a></p>
+{% block logout %}
+{% endblock logout %}
 </div>
 {% endblock content %}

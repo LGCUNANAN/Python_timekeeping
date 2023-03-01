@@ -17,15 +17,15 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import check_in,check_out,check_in_confirm
+from .views import check_in,check_out,login_redirect
 
 app_name='accounts'
 
 urlpatterns = [
     path('check_in/', check_in, name='check_in'),
     path('check_out/', check_out, name='check_out'),
-    path('check_in_confirm/', check_in_confirm, name='check_in_confirm'),
-    
+
+    path('login-redirect/', login_redirect, name='login_redirect')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
