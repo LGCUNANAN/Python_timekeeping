@@ -15,17 +15,16 @@ Including another URLconf
 """
 from django.urls import path
 from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import check_in,check_out,login_redirect
+from .views import time_in,time_out,login_redirect,TimeRecordListView
 
 app_name='accounts'
 
 urlpatterns = [
-    path('check_in/', check_in, name='check_in'),
-    path('check_out/', check_out, name='check_out'),
-
-    path('login-redirect/', login_redirect, name='login_redirect')
+    path('time_in/', time_in, name='time_in'),
+    path('time_out/', time_out, name='time_out'),
+    path('login-redirect/', login_redirect, name='login_redirect'),
+    path('time_record_list/', TimeRecordListView.as_view(), name='time_record_list')
 ]
 
 urlpatterns += staticfiles_urlpatterns()

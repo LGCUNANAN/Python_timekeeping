@@ -1,27 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="login">
-    <form action="{% url 'accounts:check_out'%}" method="POST" enctype="multipart/form-data">
+            
+        <form action="{% url 'accounts:time_out'%}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        {% include 'time_record_list.html' %}
         <table align="center">
             <tr>
                 <th colspan="2"><h2>Time Keeping</h2></th>
             </tr>
-            <tr>{% if success_message %}
-                
-            
-                <td colspan="2"> <h3>{{ success_message }}</h3><br>
+            <tr>{% if error_message %}
+                <td colspan="2"> <h3>{{ error_message }}</h3><br>
                     {% endif %}
-                </td>
             </tr>
                     <tr>
                         <td colspan="2"> 
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required><br>
+                            <label for="username">username:</label>
+                            <input type="username" id="username" name="username" required><br>
                     </tr>
                 <tr>
                     <td colspan="2">
-                        <label> Password:</label> <input type="text" name="password"><br></td>
+                        <label> Password:</label> <input type="password" name="password"><br></td>
                 </tr>
                 <tr>
                 <td colspan="2">
@@ -31,5 +30,6 @@
                 </tr>
         </table>
     </form> 
+
 </div>
 {% endblock content %}

@@ -12,7 +12,7 @@ body{
     align-items: center;
 }
 h1 {
-    font-size: 120px;
+    font-size: 60px;
     text-transform: uppercase;
     font-family: 'Gambetta', serif;
     letter-spacing: -2px;
@@ -57,14 +57,13 @@ h2
 table
 {   
     border-radius: 50px;
-    border: 1px solid black;
     table-layout: auto;
-    width: 500px;
+    width: 400px;
     text-align: center; 
     background-color: white;
 }
 td{
-    font-size: 26px;
+    font-size: 20px;
     border: 1px solid black;
     padding: 5px;
     

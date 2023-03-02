@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="login"><h2>{{ success_message }}</h2>
-<p>You are now logged in as {{ user.email }}.</p>
-<p><a href="{% url 'accounts:check_out' %}">Click here to check out.</a></p>
-{% block logout %}
-{% endblock logout %}
-</div>
-{% endblock content %}
