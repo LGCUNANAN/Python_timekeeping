@@ -18,7 +18,7 @@ class TimeRecord(models.Model):
         if self.time_out and self.time_in:
             duration = self.time_out - self.time_in
             hours, minutes, seconds = duration.seconds // 3600, (duration.seconds // 60) % 60, duration.seconds % 60
-            return f"{hours} hours, {minutes} minutes, {seconds} seconds"
+            return f"{hours} hours, {minutes} minutes"
         return ""
     total_time_display.short_description = 'Total time'
     

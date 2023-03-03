@@ -11,12 +11,12 @@ admin.site.register(User, EmployeeAdmin)
 class TimeRecordAdmin(admin.ModelAdmin):
     list_display = ('user', 'time_in', 'time_out','total_time_display')
     def check_in_time(self, obj):
-        return obj.time_in.strftime("%H:%M:%S")
+        return obj.time_in.strftime("%H:%M")
 
     def check_out_time(self, obj):
-        return obj.time_out.strftime("%H:%M:%S") if obj.time_out else ""
+        return obj.time_out.strftime("%H:%M") if obj.time_out else ""
     def total_time(self, obj):
-        return obj.total_time.strftime("%H:%M:%S") 
+        return obj.total_time.strftime("%H:%M") 
     ordering = ('-time_in',)
     
     def get_queryset(self, request):

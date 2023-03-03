@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    'accounts',
+    'bootstrap5',
     
 ]
-LOGIN_URL = 'accounts:check_in'
+LOGIN_URL = 'accounts:time_in'
 
-LOGIN_REDIRECT_URL = '/accounts/check_in_confirm/'
+LOGIN_REDIRECT_URL = 'accounts:time_out'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

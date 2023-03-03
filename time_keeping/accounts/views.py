@@ -4,9 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login, logout
 from django.views.generic import ListView
 from django.utils import timezone
-from django.contrib import messages
 from .models import TimeRecord
-from .models import User
 
 def time_in(request):
     if request.method == 'POST':
@@ -34,23 +32,34 @@ def login_redirect(request):
         return redirect('accounts:time_out')
     else:
         return redirect('accounts:time_in')
-login_required
+
+@login_required
 def time_out(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
+
         if user is not None and user.is_authenticated:
-            logout(request)
-            time_in = user.timerecord_set.latest('time_in').time_in
-            time_out = timezone.now()
-            TimeRecord.objects.create(user=user, time_in=time_in, time_out=time_out)
-            return redirect('accounts:time_in')
+            if user == request.user:
+                logout(request)
+                previous_record = user.timerecord_set.latest('time_in')
+                time_in = previous_record.time_in
+                previous_record.delete()
+                time_out = timezone.now()
+                TimeRecord.objects.create(user=user, time_in=time_in, time_out=time_out)
+                return redirect('accounts:time_in')
+            else:
+                error_message = "Invalid logout credentials"
+                return render(request, 'time_out.html', {'error_message': error_message})
         else:
-            error_message = "Invalid logout credentials"
+            error_message = "Invalid login credentials"
             return render(request, 'time_out.html', {'error_message': error_message})
     else:
-        return render(request, 'time_out.html')
+        time_records = request.user.timerecord_set.all().order_by('-time_in')
+        context = {'time_records': time_records}
+        return render(request, 'time_out.html', context)
+
 
 class TimeRecordListView(ListView):
     model = TimeRecord
