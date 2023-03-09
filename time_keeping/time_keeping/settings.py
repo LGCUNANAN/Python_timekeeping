@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'bootstrap5',
+    'import_export',
     
 ]
 LOGIN_URL = 'accounts:time_in'
@@ -155,6 +156,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
 
 STATICFILES_DIRS = [BASE_DIR, '/time_keeping/template/static',]
+IMPORT_EXPORT_USE_TRANSACTION=True
 
 
 # Default primary key field type

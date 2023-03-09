@@ -1,0 +1,41 @@
+
+.text_color {
+  background-color: #033e8c;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+.time_wrapper {
+  position: relative;
+}
+#time {
+  text-shadow: 0 0 40px #033e8c;
+  font-size: 12rem;
+}
+#sec {
+  position: absolute;
+  bottom: 40px;
+  font-size: 2rem;
+}
+#mid {
+  position: absolute;
+  top: 35px;
+  right: -80px;
+  font-size: 3rem;
+}
+.day_wrapper {
+  display: flex;
+  position: relative;
+  left: 20px;
+  justify-content: space-between;
+}
+.day_wrapper span {
+  font-size: 2rem;
+  font-weight: 600;
+  opacity: 0.3;
+}
+#showDate {
+  position: relative;
+  left: 20px;
+  font-size: 2rem;
+}
+

@@ -4,7 +4,14 @@
             
         <form action="{% url 'accounts:time_out'%}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h2>Time Keeping</h2>
+        {% if messages %}
+        <ul class="messages">
+    {% for message in messages %}
+    {{ message }}
+
+    {% endfor %}
+    </ul>
+{% endif %}
         {% include 'time_record_list.html' %}
         
         {% if error_message %}
