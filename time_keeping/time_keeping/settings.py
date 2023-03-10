@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'bootstrap5',
     'import_export',
+    'rangefilter',
     
 ]
 LOGIN_URL = 'accounts:time_in'

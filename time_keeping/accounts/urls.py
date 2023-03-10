@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .views import time_in,time_out,login_redirect,TimeRecordListView
+from .views import time_in,time_out,login_redirect,TimeRecordListView,view_records
 
 app_name='accounts'
 
@@ -23,7 +23,8 @@ urlpatterns = [
     path('time_in/', time_in, name='time_in'),
     path('time_out/', time_out, name='time_out'),
     path('login-redirect/', login_redirect, name='login_redirect'),
-    path('time_record_list/', TimeRecordListView.as_view(), name='time_record_list')
+    path('time_record_list/', TimeRecordListView.as_view(), name='time_record_list'),
+    path('view_records/', view_records, name='view_records'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
