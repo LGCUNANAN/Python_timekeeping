@@ -13,18 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
-
+from .views import time_in,time_out,login_redirect,TimeRecordListView,view_records
 
 app_name='accounts'
 
 urlpatterns = [
-    
+    path('time_in/', time_in, name='time_in'),
+    path('time_out/', time_out, name='time_out'),
+    path('login-redirect/', login_redirect, name='login_redirect'),
+    path('time_record_list/', TimeRecordListView.as_view(), name='time_record_list'),
+    path('view_records/', view_records, name='view_records'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

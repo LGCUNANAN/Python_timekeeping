@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
+
 
 # Application definition
 
@@ -38,9 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    'accounts',
+    'bootstrap5',
+    'import_export',
+    'rangefilter',
     
 ]
+LOGIN_URL = 'accounts:time_in'
+
+LOGIN_REDIRECT_URL = 'accounts:time_out'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,13 +89,22 @@ WSGI_APPLICATION = 'time_keeping.wsgi.application'
 
 DATABASES = {
     'default': {
+    
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'time_keeping_db',
+    
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+        },
+        'NAME': 'time_keeping_new',
+
         'USER': 'root',
+
         'PASSWORD': '@Password2023',
+
         'HOST': 'localhost',
     }
 }
+
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
@@ -101,20 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 9,
-        }
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
 ]
-#AUTH_USER_MODEL= 'accounts.User'
+AUTH_USER_MODEL= 'accounts.User'
 
 
 # Internationalization
@@ -122,19 +129,23 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'Asia/Manila'
+
+USE_TZ = False
+
+USE_L10N =True
 
 USE_I18N = True
-
-USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  
+
 STATICFILES_DIRS = [BASE_DIR, '/time_keeping/template/static',]
+IMPORT_EXPORT_USE_TRANSACTION=True
 
 
 # Default primary key field type
