@@ -1,15 +1,22 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import ListView
 from django.utils import timezone
-from .models import TimeRecord
+from .models import TimeRecord,User
 from django.contrib import messages
 from django.core.paginator import Paginator
 from datetime import datetime
+from django.conf import settings
 
 
 def time_in(request):
+    context_dict = {}
+
+    users = User.objects.all()
+
+    context_dict["users"] = users
     if request.session.get('loggedin'):
         return redirect('accounts:time_out')
     else:
@@ -23,7 +30,6 @@ def time_in(request):
                 request.session['loggedin'] = True
                 print(time_in)
                 TimeRecord.objects.create(user=user, time_in=time_in)
-                
                 return redirect('accounts:view_records')
             else:
                 error_message = "Invalid credentials"
@@ -31,7 +37,7 @@ def time_in(request):
         else:
             if request.session.get('time_in'):
                 return redirect('accounts:view_records')
-            return render(request, 'time_in.html')
+            return render(request, 'time_in.html', context_dict)
 
 def login_redirect(request):
     if request.user.is_authenticated:

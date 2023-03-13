@@ -23,7 +23,7 @@ class TimeRecordResource(resources.ModelResource):
         else:
             return ""
 
-    def after_export(self, queryset, data, *args, **kwargs):
+    def after_export(self, queryset, data, *args, **kwargs):    
         total_seconds = sum((tr.time_out - tr.time_in).total_seconds() for tr in queryset if tr.time_in and tr.time_out)
         total_hours = str(timedelta(seconds=total_seconds))
         data.append(['', '', '', 'Total hours:', total_hours])

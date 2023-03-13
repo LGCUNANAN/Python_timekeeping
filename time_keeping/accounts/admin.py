@@ -7,8 +7,7 @@ from .models import User, TimeRecord
 
 
 class EmployeeAdmin(UserAdmin, ImportExportModelAdmin):
-    pass
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_active')
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name', 'is_active')
 
     def toggle_active(self, request, queryset):
         for user in queryset:
@@ -27,6 +26,18 @@ class EmployeeAdmin(UserAdmin, ImportExportModelAdmin):
         else:
             return True
 
+    def save_model(self, request, obj, form, change):
+        obj.username = str(obj.id) + ' ' + obj.first_name + ' ' + obj.last_name
+        obj.set_password(str(obj.id))
+        super().save_model(request, obj, form, change)
+    add_fieldsets = (
+        (None, {
+            'fields': ('id', 'first_name', 'last_name','password1', 'password2'),
+        }),
+        ('Permissions', {
+            'fields': ('is_active', 'is_staff', 'is_superuser'),
+        }),
+    )
 
 admin.site.register(User, EmployeeAdmin)
 
@@ -38,7 +49,7 @@ class TimeRecordAdmin(ImportExportModelAdmin):
     ordering = ('-time_in',)
 
     def check_in_time(self, obj):
-        return obj.time_in.strftime("%H:%M")
+        return obj
 
     def check_out_time(self, obj):
         return obj.time_out.strftime("%H:%M") if obj.time_out else ""
